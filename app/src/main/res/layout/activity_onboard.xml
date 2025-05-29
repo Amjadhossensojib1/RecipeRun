@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.onboard.OnboardActivity"
+    android:background="@color/background">
+    <ImageView
+        android:id="@+id/iv_onboardimg"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/cooking"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"/>
+    <TextView
+        android:id="@+id/tv_onboardtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Recipe Haven Awaits Exploration!"
+        app:layout_constraintTop_toBottomOf="@+id/iv_onboardimg"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"/>
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Discover a treasure trove of thousands of recipes with just one click! New tastes, new experiences—at your fingertips."
+        app:layout_constraintTop_toBottomOf="@+id/tv_onboardtitle"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/blar"
+        android:textStyle="bold"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"/>
+    <Button
+        android:id="@+id/btn_getstart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:backgroundTint="@color/orange"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

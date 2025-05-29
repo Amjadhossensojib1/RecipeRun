@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "61297374261",
+    "firebase_url": "https://reciperun21-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "reciperun21",
+    "storage_bucket": "reciperun21.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61297374261:android:a84b577122dd1e0729ed7c",
+        "android_client_info": {
+          "package_name": "com.dalazu.reciperun"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy98QPPb3w2QUKpz74F8KOMh4OMNOKQFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
