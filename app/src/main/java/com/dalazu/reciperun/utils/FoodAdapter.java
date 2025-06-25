@@ -50,6 +50,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public int getItemCount() {
         return foodList.size();
     }
+    public void updateList(List<Food> newList) {
+        this.foodList = newList;
+        notifyDataSetChanged();
+    }
 
     public static class FoodViewHolder extends RecyclerView.ViewHolder {
         ImageView imgFood, ivFavorite;
@@ -80,6 +84,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
                 intent.putExtra("id", food.getId());
                 intent.putExtra("foodImage", food.getFoodImage());
                 intent.putExtra("min", food.getTvMin());
+                intent.putExtra("kal", food.getTvKal());
                 intent.putExtra("videoUrl", food.getVideoUrl());
                 context.startActivity(intent);
             });

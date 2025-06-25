@@ -1,6 +1,7 @@
 package com.dalazu.reciperun.ui.foodbycategoryActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class FoodByCategoryActivity extends BaseActivity {
     private List<Food> foodList;
     private FoodAdapter adapter;
     private DatabaseReference databaseReference;
+    private String selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +41,50 @@ public class FoodByCategoryActivity extends BaseActivity {
         adapter = new FoodAdapter(this, foodList, null);
         recyclerView.setAdapter(adapter);
 
-        String category = getIntent().getStringExtra("category");
+        selectedCategory = getIntent().getStringExtra("category");
+        if (selectedCategory != null) {
+            selectedCategory = selectedCategory.trim().toLowerCase();
+        } else {
+            selectedCategory = "";
+        }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("food");
-        databaseReference.orderByChild("category").equalTo(category)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        foodList.clear();
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            Food food = dataSnapshot.getValue(Food.class);
-                            foodList.add(food);
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(FoodByCategoryActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        loadFoodByCategory();
     }
 
+    private void loadFoodByCategory() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                foodList.clear();
 
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Food food = dataSnapshot.getValue(Food.class);
+
+                    if (food != null && food.getCategory() != null) {
+                        String foodCategory = food.getCategory().trim().toLowerCase();
+
+                        if (foodCategory.equals(selectedCategory)) {
+                            foodList.add(food);
+                        }
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+
+                if (foodList.isEmpty()) {
+                    Toast.makeText(FoodByCategoryActivity.this, "No items found in category.", Toast.LENGTH_SHORT).show();
+                } else {
+//                    Toast.makeText(FoodByCategoryActivity.this, "Found " + foodList.size() + " items", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(FoodByCategoryActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("FoodCategory", "Database error: " + error.getMessage());
+            }
+        });
+    }
 }

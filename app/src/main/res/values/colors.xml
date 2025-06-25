@@ -11,5 +11,7 @@
     <color name="crim">#EFEEEA</color>
     <color name="yello">#FFC107</color>
     <color name="star_color">#FFD700</color>
+    <color name="button_color">#F64E0F0F</color>
+
 
 </resources>

@@ -18,16 +18,19 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
     private List<Category> categoryList;
     private CategoryClickListener listener;
+    private int layoutId;
 
-    public CategoryAdapter(List<Category> categoryList, CategoryClickListener listener) {
+
+    public CategoryAdapter(List<Category> categoryList, CategoryClickListener listener, int layoutId) {
         this.categoryList = categoryList;
         this.listener = listener;
+        this.layoutId = layoutId;
     }
 
     @NonNull
     @Override
     public CategoryAdapter.CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_category, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
         return new CategoryViewHolder(view);
     }
 

@@ -60,10 +60,14 @@ public class FoodFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     foodList.clear();
+                    int count = 0;
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        if (count >= 10) break;
                         Food food = dataSnapshot.getValue(Food.class);
                         foodList.add(food);
+                        count++;
                     }
+
                     foodAdapter.notifyDataSetChanged();
                 }
 
